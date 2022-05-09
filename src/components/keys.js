@@ -1,12 +1,153 @@
-export const enKEYS = ['`', '1', '2','3','4','5','6','7','8','9','0','-','=','Backspace','Tab','q','w','e','r','t','y','u','i','o','p','[',']','\\','CapsLock','a','s','d','f','g','h','j','k','l',';','\'','Enter','Shift','z','x','c','v','b','n','m',',','.','/','Shift','Control','Alt',' ','Alt','Control','ArrowLeft','ArrowUp','ArrowDown','ArrowRight']
-export const ruKEYS = ['ё', '1', '2','3','4','5','6','7','8','9','0','-','=','Backspace','Tab','й','ц','у','к','е','н','г','ш','щ','з','х','ъ','\\','CapsLock','ф','ы','в','а','п','р','о','л','д','ж','э','Enter','Shift','я','ч','с','м','и','т','ь','б','ю','.','Shift','Control','Alt',' ','Alt','Control','ArrowLeft','ArrowUp','ArrowDown','ArrowRight']
-const rus = 'ёйцукенгшщзхъфывапролджэячсмитьбю'
-export const ruCapLetters = rus.toUpperCase().split('')
-export const ruLitLetters = rus.split('')
-const en = 'qwertyuiopasdfghhjklzxcvbnm'
-export const enCapLetters = en.toUpperCase().split('')
-export const enLitLetters = en.split('')
-export const ruCapArray = []
-export const ruLitArray = []
-export const enCapArray = []
-export const enLitArray = []
+const ruLittle = "ё1234567890-=йцукенгшщзхъ\\фывапролджэячсмитьбю. "
+const ruCapital = "Ё!\"№;%:?*()_+ЙЦУКЕНГШЩЗХЪ/ФЫВАПРОЛДЖЭЯЧСМИТЬБЮ, "
+export const ruLittleArray = ruLittle.split("")
+export const ruCapitalArray = ruCapital.split("")
+
+const enLittle = "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./ "
+const enCapital = '~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:"ZXCVBNM<>? '
+export const enLittleArray = enLittle.split("")
+export const enCapitalArray = enCapital.split("")
+
+const enLittleLetter = "qwertyuiopasdfghjklzxcvbnm"
+const enCapitalLetter = enLittleLetter.toUpperCase()
+export const enLittleLetters = enLittleLetter.split("")
+export const enCapitalLetters = enCapitalLetter.split("")
+const ruLittleLetter = "ёйцукенгшщзхъфывапролджэячсмитьбю"
+const ruCapitalLetter = ruLittleLetter.toUpperCase()
+export const ruLittleLetters = ruLittleLetter.split("")
+export const ruCapitalLetters = ruCapitalLetter.split("")
+
+
+export const enKeyCode = [
+    "`",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "0",
+    "-",
+    "=",
+    "Backspace",
+    "Tab",
+    "q",
+    "w",
+    "e",
+    "r",
+    "t",
+    "y",
+    "u",
+    "i",
+    "o",
+    "p",
+    "[",
+    "]",
+    "\\",
+    "Delete",
+    "CapsLock",
+    "a",
+    "s",
+    "d",
+    "f",
+    "g",
+    "h",
+    "j",
+    "k",
+    "l",
+    ";",
+    "'",
+    "Enter",
+    "Shift",
+    "z",
+    "x",
+    "c",
+    "v",
+    "b",
+    "n",
+    "m",
+    ",",
+    ".",
+    "/",
+    "Shift",
+    "Control",
+    "Alt",
+    " ",
+    "Alt",
+    "Control",
+    "ArrowLeft",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowRight",
+]
+export const ruKeyCode = [
+    "ё",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "0",
+    "-",
+    "=",
+    "Backspace",
+    "Tab",
+    "й",
+    "ц",
+    "у",
+    "к",
+    "е",
+    "н",
+    "г",
+    "ш",
+    "щ",
+    "з",
+    "х",
+    "ъ",
+    "\\",
+    "Delete",
+    "CapsLock",
+    "ф",
+    "ы",
+    "в",
+    "а",
+    "п",
+    "р",
+    "о",
+    "л",
+    "д",
+    "ж",
+    "э",
+    "Enter",
+    "Shift",
+    "я",
+    "ч",
+    "с",
+    "м",
+    "и",
+    "т",
+    "ь",
+    "б",
+    "ю",
+    ".",
+    "Shift",
+    "Control",
+    "Alt",
+    " ",
+    "Alt",
+    "Control",
+    "ArrowLeft",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowRight"
+]
+export const codes = [
+    'Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace', 'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete', 'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter', 'ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ShiftRight', 'ControlLeft', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowRight'
+]

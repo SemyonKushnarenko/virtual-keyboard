@@ -16,6 +16,9 @@ body {
     width: 500px;
     height: 100px;
 }
+.note {
+    color: #ddd;
+}
 .btn::selection{
     user-select: none;
 }

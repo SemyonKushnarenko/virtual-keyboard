@@ -1,3 +1,19 @@
+import pressTab from "./components/tab"
+import pressShift from "./components/shift"
+import {
+    ruCapitalArray,
+    ruLittleArray,
+    ruCapitalLetters,
+    ruLittleLetters,
+    ruKeyCode,
+    enCapitalArray,
+    enCapitalLetters,
+    enKeyCode,
+    enLittleArray,
+    enLittleLetters,
+    codes
+} from "./components/keys"
+
 const container = document.createElement("div")
 container.classList.add("container")
 document.body.append(container)
@@ -5,139 +21,6 @@ const keyboard = document.createElement("div")
 keyboard.classList.add("keyboard")
 const note = document.createElement("h1")
 note.classList.add("note")
-const enKeyCode = [
-    "`",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "0",
-    "-",
-    "=",
-    "Backspace",
-    "Tab",
-    "q",
-    "w",
-    "e",
-    "r",
-    "t",
-    "y",
-    "u",
-    "i",
-    "o",
-    "p",
-    "[",
-    "]",
-    "\\",
-    "Delete",
-    "CapsLock",
-    "a",
-    "s",
-    "d",
-    "f",
-    "g",
-    "h",
-    "j",
-    "k",
-    "l",
-    ";",
-    "'",
-    "Enter",
-    "Shift",
-    "z",
-    "x",
-    "c",
-    "v",
-    "b",
-    "n",
-    "m",
-    ",",
-    ".",
-    "/",
-    "Shift",
-    "Control",
-    "Alt",
-    " ",
-    "Alt",
-    "Control",
-    "ArrowLeft",
-    "ArrowUp",
-    "ArrowDown",
-    "ArrowRight",
-]
-const ruKeyCode = [
-    "ё",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "0",
-    "-",
-    "=",
-    "Backspace",
-    "Tab",
-    "й",
-    "ц",
-    "у",
-    "к",
-    "е",
-    "н",
-    "г",
-    "ш",
-    "щ",
-    "з",
-    "х",
-    "ъ",
-    "\\",
-    "Delete",
-    "CapsLock",
-    "ф",
-    "ы",
-    "в",
-    "а",
-    "п",
-    "р",
-    "о",
-    "л",
-    "д",
-    "ж",
-    "э",
-    "Enter",
-    "Shift",
-    "я",
-    "ч",
-    "с",
-    "м",
-    "и",
-    "т",
-    "ь",
-    "б",
-    "ю",
-    ".",
-    "Shift",
-    "Control",
-    "Alt",
-    " ",
-    "Alt",
-    "Control",
-    "ArrowLeft",
-    "ArrowUp",
-    "ArrowDown",
-    "ArrowRight",
-]
-const codes = [
-    'Backquote','Digit1','Digit2','Digit3','Digit4','Digit5','Digit6','Digit7','Digit8','Digit9','Digit0','Minus','Equal','Backspace','Tab','KeyQ','KeyW','KeyE','KeyR','KeyT','KeyY','KeyU','KeyI','KeyO','KeyP','BracketLeft','BracketRight','Backslash','Delete','CapsLock','KeyA','KeyS','KeyD','KeyF','KeyG','KeyH','KeyJ','KeyK','KeyL','Semicolon','Quote','Enter','ShiftLeft','KeyZ','KeyX','KeyC','KeyV','KeyB','KeyN','KeyM','Comma','Period','Slash','ShiftRight','ControlLeft','AltLeft','Space','AltRight','ControlRight','ArrowLeft','ArrowUp','ArrowDown','ArrowRight'
-]
 const textarea = document.createElement("textarea")
 textarea.classList.add("textarea")
 container.append(textarea)
@@ -145,34 +28,12 @@ if (!localStorage.getItem("lang")) {
     localStorage.setItem("lang", "EN")
 }
 
-const ruLittle = "ё1234567890-=йцукенгшщзхъ\\фывапролджэячсмитьбю/ ";
-const ruCapital = "Ё!\"№;%:?*()_+ЙЦУКЕНГШЩЗХЪ/ФЫВАПРОЛДЖЭЯЧСМИТЬБЮ? ";
-const ruLittleArray = ruLittle.split("");
-const ruCapitalArray = ruCapital.split("");
 
-const enLittle = "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./ ";
-const enCapital = '~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:"ZXCVBNM<>? ';
-const enLittleArray = enLittle.split("");
-const enCapitalArray = enCapital.split("");
-note.textContent =
-    "This keyboard is created on Windows 11. Keyboard shortcut for switching languages is SHIFT + ALT.";
-container.append(keyboard);
-container.append(note);
+note.innerHTML =
+    "This keyboard is created on Windows 11. <br></br>Shortcut for switching languages is LeftShift + LeftAlt";
+container.append(keyboard)
+container.append(note)
 
-const enLittleLetter = "qwertyuiopasdfghjklzxcvbnm";
-const enCapitalLetter = enLittleLetter.toUpperCase();
-const enLittleLetters = enLittleLetter.split("");
-const enCapitalLetters = enCapitalLetter.split("");
-const ruLittleLetter = "ёйцукенгшщзхъфывапролджэячсмитьбю";
-const ruCapitalLetter = ruLittleLetter.toUpperCase();
-const ruLittleLetters = ruLittleLetter.split("");
-const ruCapitalLetters = ruCapitalLetter.split("");
-
-function pressShift(element, lettersFrom, lettersTo) {
-    if (lettersFrom.indexOf(element.textContent) > -1) {
-        element.textContent = lettersTo[lettersFrom.indexOf(element.textContent)]
-    }
-}
 
 function createButton(key, code) {
     const btn = document.createElement("div")
@@ -253,11 +114,6 @@ for (let i = 0; i < keyCodes.length; i++) {
 
 let pressed = new Set()
 document.addEventListener("keydown", event => {
-    document.querySelectorAll(".btn").forEach(function (element) {
-        if (event.code === element.dataset.code) {
-            element.classList.add("active");
-        }
-    })
     if (event.key === "Tab") {
         event.preventDefault();
         const textarea = document.querySelector(".textarea");
@@ -313,18 +169,74 @@ document.addEventListener("keydown", event => {
         textarea.selectionStart = start + 1;
         textarea.selectionEnd = start + 1;
     }
+    if (event.key === "Alt") {
+        event.preventDefault()
+        pressed.add("Alt")
+        document.querySelectorAll(".btn").forEach(function (element) {
+            if (event.code === element.dataset.code) {
+                element.classList.add("active")
+            }
+        })
+    }
     if (event.key === "Shift") {
         pressed.add("Shift")
-        document.querySelector(".shift").classList.add("shift-active");
+        document.querySelectorAll(".btn").forEach(function (element) {
+            if (event.code === element.dataset.code) {
+                element.classList.add("active")
+            }
+        })
+    }
+    if (pressed.has("Shift") && pressed.has("Alt")) {
+        function changeLang(symbol, lettersFrom, lettersTo) {
+            if (document.querySelector(".caps-check").textContent === symbol) {
+                document.querySelectorAll(".btn").forEach(function (element) {
+                    if (element.dataset.key.length === 1) {
+                        element.textContent = lettersTo[lettersFrom.indexOf(element.textContent)]
+                    }
+                })
+            }
+        }
         if (localStorage.getItem("lang") === "EN") {
-            document.querySelectorAll(".btn").forEach(function (element) {
-                pressShift(element, enLittleArray, enCapitalArray)
-            })
+            localStorage.setItem("lang", "RU")
+            changeLang("Q", enCapitalArray, ruCapitalArray)
+            changeLang("q", enLittleArray, ruCapitalArray)
+        } else {
+            localStorage.setItem("lang", "EN")
+            changeLang("Й", ruCapitalArray, enCapitalArray)
+            changeLang("й", ruLittleArray, enCapitalArray)
+        }
+        pressed.clear()
+        return
+    }
+    if (event.key === "Shift") {
+        document.querySelector(".shift").classList.add("active")
+        if (localStorage.getItem("lang") === "EN") {
+            if (document.querySelector('.caps-check').textContent === 'q') {
+                document.querySelectorAll(".btn").forEach(function (element) {
+                    pressShift(element, enLittleArray, enCapitalArray)
+                })
+            } else {
+                document.querySelectorAll(".btn").forEach(function (element) {
+                    pressShift(element, enLittleArray, enCapitalArray)
+                    if (enCapitalLetters.indexOf(element.textContent) > -1) {
+                        element.textContent = enLittleLetters[enCapitalLetters.indexOf(element.textContent)]
+                    }
+                })
+            }
         }
         if (localStorage.getItem("lang") === "RU") {
-            document.querySelectorAll(".btn").forEach(function (element) {
-                pressShift(element, ruLittleArray, ruCapitalArray)
-            })
+            if (document.querySelector('.caps-check').textContent === 'й') {
+                document.querySelectorAll(".btn").forEach(function (element) {
+                    pressShift(element, ruLittleArray, ruCapitalArray)
+                })
+            } else {
+                document.querySelectorAll(".btn").forEach(function (element) {
+                    pressShift(element, ruLittleArray, ruCapitalArray)
+                    if (ruCapitalLetters.indexOf(element.textContent) > -1) {
+                        element.textContent = ruLittleLetters[ruCapitalLetters.indexOf(element.textContent)]
+                    }
+                })
+            }
         }
     }
     if (event.key.length === 1) {
@@ -352,92 +264,108 @@ document.addEventListener("keydown", event => {
         textarea.selectionEnd = start + 1;
     }
     if (event.key === "CapsLock") {
-        if (localStorage.getItem("lang") === "RU") {
-            if (ruLittleLetters.indexOf(document.querySelector(".caps-check").textContent) > -1) {
-                document.querySelectorAll(".btn").forEach(function (element) {
-                    if (ruLittleLetters.indexOf(element.dataset.key) > -1) {
-                        element.textContent =
-                            ruCapitalLetters[ruLittleLetters.indexOf(element.dataset.key)]
-                    }
-                });
+        if (document.querySelector('.caps').classList.contains('active')) {
+            if (localStorage.getItem("lang") === "RU") {
+                if (ruCapitalLetters.indexOf(document.querySelector(".caps-check").textContent) > -1) {
+                    document.querySelectorAll(".btn").forEach(element => {
+                        if (ruCapitalLetters.indexOf(element.textContent) > -1) {
+                            element.textContent = ruLittleLetters[ruCapitalLetters.indexOf(element.textContent)]
+                        }
+                    })
+                }
+            } else {
+                if (enCapitalLetters.indexOf(document.querySelector(".caps-check").textContent) > -1) {
+                    document.querySelectorAll(".btn").forEach(element => {
+                        if (enCapitalLetters.indexOf(element.textContent) > -1) {
+                            element.textContent = enLittleLetters[enCapitalLetters.indexOf(element.textContent)]
+                        }
+                    })
+                }
             }
+            document.querySelector('.caps').classList.remove('active')
         } else {
-            if (enLittleLetters.indexOf(document.querySelector(".caps-check").textContent) > -1) {
-                document.querySelectorAll(".btn").forEach(function (element) {
-                    if (enLittleLetters.indexOf(element.dataset.key) > -1) {
-                        element.textContent =
-                            enCapitalLetters[enLittleLetters.indexOf(element.dataset.key)];
-                        element.dataset.key =
-                            enCapitalLetters[enLittleLetters.indexOf(element.dataset.key)];
-                    }
-                });
+            if (localStorage.getItem("lang") === "RU") {
+                if (ruLittleLetters.indexOf(document.querySelector(".caps-check").textContent) > -1) {
+                    document.querySelectorAll(".btn").forEach(element => {
+                        if (ruLittleLetters.indexOf(element.textContent) > -1) {
+                            element.textContent =
+                                ruCapitalLetters[ruLittleLetters.indexOf(element.textContent)]
+                        }
+                    })
+                }
+            } else {
+                if (enLittleLetters.indexOf(document.querySelector(".caps-check").textContent) > -1) {
+                    document.querySelectorAll(".btn").forEach(element => {
+                        if (enLittleLetters.indexOf(element.textContent) > -1) {
+                            element.textContent =
+                                enCapitalLetters[enLittleLetters.indexOf(element.textContent)]
+                        }
+                    })
+                }
             }
+            document.querySelector('.caps').classList.add('active')
         }
+        return
     }
-    if (event.key === "Alt") {
-        pressed.add("Alt");
-    }
-    if (pressed.has("Shift") && pressed.has("Alt")) {
-        function changeLang(symbol, lettersFrom, lettersTo) {
-            if (document.querySelector(".caps-check").textContent === symbol) {
-                document.querySelectorAll(".btn").forEach(function (element) {
-                    if (element.dataset.key.length === 1) {
-                        element.textContent = lettersTo[lettersFrom.indexOf(element.textContent)]
-                    }
-                })
-            }
-        }
-        if (localStorage.getItem("lang") === "EN") {
-            localStorage.setItem("lang", "RU")
-            changeLang("Q", enCapitalArray, ruLittleArray)
-        } else {
-            localStorage.setItem("lang", "EN")
-            changeLang("Й", ruCapitalArray, enLittleArray)
-        }
-    }
-    if (document.querySelector(".shift-active")) {
+    if (document.querySelector(".active")) {
         document.querySelector(".shift").classList.remove("shift-active")
     }
+    document.querySelectorAll(".btn").forEach(function (element) {
+        if (event.code === element.dataset.code) {
+            element.classList.add("active")
+        }
+    })
 })
 
 document.addEventListener("keyup", event => {
     if (event.key === "Shift") {
+        document.querySelectorAll(".shift")[0].classList.add("active")
         if (localStorage.getItem("lang") === "EN") {
-            document.querySelectorAll(".btn").forEach(function (element) {
-                pressShift(element, enCapitalArray, enLittleArray);
-            })
+            if (document.querySelector('.caps-check').textContent === 'q') {
+                document.querySelectorAll(".btn").forEach(element => {
+                    pressShift(element, enCapitalArray, enLittleArray)
+                    pressShift(element, enLittleLetters, enCapitalLetters)
+                })
+            } else {
+                document.querySelectorAll(".btn").forEach(element => {
+                    pressShift(element, enCapitalArray, enLittleArray)
+                })
+            }
         }
         if (localStorage.getItem("lang") === "RU") {
-            document.querySelectorAll(".btn").forEach(function (element) {
-                pressShift(element, ruCapitalArray, ruLittleArray);
-            })
+            if (document.querySelector('.caps-check').textContent === 'й') {
+                document.querySelectorAll(".btn").forEach(function (element) {
+                    pressShift(element, ruCapitalArray, ruLittleArray)
+                    pressShift(element, ruLittleLetters, ruCapitalLetters)
+                })
+            } else {
+                document.querySelectorAll(".btn").forEach(function (element) {
+                    pressShift(element, ruCapitalArray, ruLittleArray)
+                    if (ruCapitalLetters.indexOf(element.textContent) > -1) {
+                        element.textContent = ruLittleLetters[ruCapitalLetters.indexOf(element.textContent)]
+                    }
+                })
+            }
         }
-        pressed.delete("Shift");
+        pressed.delete("Shift")
     }
     if (event.key === "Alt") {
-        pressed.delete("Alt");
+        pressed.delete("Alt")
     }
     if (event.key === "CapsLock") {
-        document.querySelectorAll(".btn").forEach(function (element) {
-            if (enCapitalLetters.indexOf(element.dataset.key) > -1) {
-                element.textContent =
-                    enLittleLetters[enCapitalLetters.indexOf(element.dataset.key)];
-                element.dataset.key =
-                    enLittleLetters[enCapitalLetters.indexOf(element.dataset.key)];
-            }
-        });
+        return
     }
     document.querySelectorAll(".btn").forEach(function (element) {
         if (event.code === element.dataset.code) {
-            element.classList.remove("active");
+            element.classList.remove("active")
         }
-    });
+    })
 })
 
 document.querySelector(".keyboard").addEventListener("click", event => {
     const textarea = document.querySelector(".textarea")
 
-    
+
     if (event.target.classList.contains("btn")) {
         textarea.focus()
 
@@ -455,7 +383,7 @@ document.querySelector(".keyboard").addEventListener("click", event => {
                     }
                 })
             } else {
-                document.querySelector(".shift").classList.remove("active")
+                event.target.classList.remove("active")
                 document.querySelectorAll(".btn").forEach(function (element) {
                     if (localStorage.getItem('lang') === 'EN') {
                         pressShift(element, enCapitalArray, enLittleArray)
@@ -466,34 +394,26 @@ document.querySelector(".keyboard").addEventListener("click", event => {
             }
             return
         }
+        if (event.target.dataset.key === "CapsLock") {
+            if (enLittleLetters.indexOf(document.querySelector(".caps-check").textContent) > -1) {
+                event.target.classList.add('active')
+                pressTab(enLittleLetters, enCapitalLetters)
+            } else if (enCapitalLetters.indexOf(document.querySelector(".caps-check").textContent) > -1) {
+                event.target.classList.remove('active')
+                pressTab(enCapitalLetters, enLittleLetters)
+            } else if (ruLittleLetters.indexOf(document.querySelector(".caps-check").textContent) > -1) {
+                event.target.classList.add('active')
+                pressTab(ruLittleLetters, ruCapitalLetters)
+            } else if (ruCapitalLetters.indexOf(document.querySelector(".caps-check").textContent) > -1) {
+                event.target.classList.remove('active')
+                pressTab(ruCapitalLetters, ruLittleLetters)
+            }
+            return
+        }
         event.target.classList.add('active')
         setInterval(() => {
             event.target.classList.remove('active')
         }, 500)
-        if (event.target.dataset.key === "CapsLock") {
-            if (enLittleLetters.indexOf(document.querySelector(".caps-check").textContent) > -1) {
-                event.target.classList.add("active");
-                document.querySelectorAll(".btn").forEach(function (element) {
-                    if (enLittleLetters.indexOf(element.dataset.key) > -1) {
-                        element.textContent =
-                            enCapitalLetters[enLittleLetters.indexOf(element.dataset.key)];
-                        element.dataset.key =
-                            enCapitalLetters[enLittleLetters.indexOf(element.dataset.key)];
-                    }
-                });
-            } else if (enCapitalLetters.indexOf(document.querySelector(".caps-check").textContent) > -1) {
-                event.target.classList.remove("active");
-                document.querySelectorAll(".btn").forEach(function (element) {
-                    if (enCapitalLetters.indexOf(element.dataset.key) > -1) {
-                        element.textContent =
-                            enLittleLetters[enCapitalLetters.indexOf(element.dataset.key)];
-                        element.dataset.key =
-                            enLittleLetters[enCapitalLetters.indexOf(element.dataset.key)];
-                    }
-                });
-            }
-            return;
-        }
         if (document.querySelector(".shift").classList.contains("active")) {
             document.querySelector(".shift").classList.remove("active")
             document.querySelectorAll(".btn").forEach(function (element) {

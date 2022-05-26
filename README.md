@@ -4,4 +4,4 @@
 
 ## junior frontend developer
 
-[Get to the keyboard](https://SemyonKushnarenko.github.io/virtual-keyboard)
+[Get to the keyboard](https://SemyonKushnarenko.github.io/virtual-keyboard/dist)
